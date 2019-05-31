@@ -17,7 +17,7 @@ int main(int argc, char **argv)
     while((ent = readdir(dir)) != NULL){
       // printf("Example path: ./%s\n", ent->d_name);
       stat(ent->d_name, &buf);
-      printf("File size: %ld ", buf.st_size);
+      printf("%ld ", buf.st_size);
       printf("%s\n", ent->d_name);
     }   
 
@@ -34,7 +34,7 @@ int main(int argc, char **argv)
     //   Then repeatedly call readdir()--printing the filenames as you go--until it lets you know there are no more directory entries by returning NULL.
     while((ent = readdir(dir)) != NULL){
       stat(ent->d_name, &buf);
-      printf("File size: %ld ", buf.st_size);
+      printf("%ld ", buf.st_size);
       printf("%s\n", ent->d_name);
     }
     //   Then call closedir().
