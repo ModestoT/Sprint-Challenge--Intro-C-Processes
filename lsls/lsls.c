@@ -18,8 +18,14 @@ int main(int argc, char **argv)
     while((ent = readdir(dir)) != NULL){
       // printf("Example path: ./%s\n", ent->d_name);
       stat(ent->d_name, &buf);
-      printf("%ld ", buf.st_size);
-      printf("%s\n", ent->d_name);
+      
+      if (S_ISDIR(buf.st_mode)){
+        printf("<DIR> ");
+        printf("%s\n", ent->d_name);
+      } else {
+        printf("%ld ", buf.st_size);
+        printf("%s\n", ent->d_name);
+      }
     }   
 
     closedir(dir);
@@ -38,8 +44,14 @@ int main(int argc, char **argv)
       sprintf(path, "%s/%s", argv[1], ent->d_name);
 
       stat(path, &buf);
-      printf("%ld ", buf.st_size);
-      printf("%s\n", ent->d_name);
+
+      if (S_ISDIR(buf.st_mode)){
+        printf("<DIR> ");
+        printf("%s\n", ent->d_name);
+      } else {
+        printf("%ld ", buf.st_size);
+        printf("%s\n", ent->d_name);
+      }
 
       free(path);
     }
